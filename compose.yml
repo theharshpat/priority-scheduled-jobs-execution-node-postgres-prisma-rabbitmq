@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: taskdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - priority-scheduled-jobs-execution-node-postgres-prisma-rabbitmq-postgres-data:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - priority-scheduled-jobs-execution-node-postgres-prisma-rabbitmq-rabbitmq-data:/var/lib/rabbitmq
+
+volumes:
+  priority-scheduled-jobs-execution-node-postgres-prisma-rabbitmq-postgres-data:
+  priority-scheduled-jobs-execution-node-postgres-prisma-rabbitmq-rabbitmq-data:
